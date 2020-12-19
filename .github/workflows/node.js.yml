@@ -46,11 +46,13 @@ jobs:
         matrix:
            os: [macos-latest, windows-latest, ubuntu-latest]    
            node: [10, 12, 14]
-           exclude:  # exlude node v10 for macos-latest and run just 11 and 14 on macos, but all for others
+           exclude:  # exlude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
                 - os: macos-latest
                   node: 10
-                - os: macos-latest
-                  node: 12           
+                - os: windows-latest
+                  node: 12   
+                - os: ubuntu-latest
+                  node: 14        
 
     steps:
     - uses: actions/checkout@v2

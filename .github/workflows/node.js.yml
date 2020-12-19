@@ -1,25 +1,22 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI
-
 on:
 #   schedule:
 #     - cron: "0 4 * * 1-5"
-######################### NO run Action when i edit README file #####
+######################### NO run Action when i edit README file #######################
 #   push:
 #     paths-ignore: 
 #       - '**.md'
-######################### Run Action when i edit **.js ########
-#     push:
-#       paths: 
-#         - '**.js'
-      
+######################### Run Action when i edit **.js ################################
+#  push:
+#   paths: 
+#    - '**.js'    
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-#############  this job to run a node v10 v12 v14 ok ubuntu latest
+#############  this job to run a node v10 v12 v14 ok ubuntu latest #####################
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
@@ -30,30 +27,32 @@ on:
 #                include:
 #                       - node: 13
 #                         os: ubuntu-18.04
-#                         experimental: true
-                        
-#######################  node v4 with npm v2 ###########
+#                         experimental: true                       
+#######################  node v4 with npm v2 ############################################
 #               include:
 #                    - os: windos-latest
 #                      node: 4 # node version 4
 #                      npm: 2  # npm version 2
-########### run job on ubuntu-latest only ##############         
-
+########### run job on ubuntu-latest only ###############################################         
 jobs:
    build:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
            os: [macos-latest, windows-latest, ubuntu-latest]    
-           node: [10, 12, 14]
-           exclude:  # exlude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
-                - os: macos-latest
-                  node: 10
-                - os: windows-latest
-                  node: 12   
+          #  node: [10, 12, 14]
+           node: [14]
+          #  exclude:  # exclude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
+          #       - os: macos-latest
+          #         node: 12
+          #       - os: windows-latest
+          #         node: 12   
+          #       - os: ubuntu-latest
+          #         node: 14       
+########################################################################
+           exclude:  # exclude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
                 - os: ubuntu-latest
-                  node: 14        
-
+                  node: 12   
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -63,3 +62,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+ 

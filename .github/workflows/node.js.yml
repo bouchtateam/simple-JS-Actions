@@ -19,16 +19,36 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  
+#############  this job to run a node v10 v12 v14 ok ubuntu latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version: [10.x, 12.x, 14.x]         
+  ###########################  include node v13 on  ubuntu-18-04 server os ##############    
+#                include:
+#                       - node: 13
+#                         os: ubuntu-18.04
+#                         experimental: true
+                        
+#######################  node v4 with npm v2 ###########
+#               include:
+#                    - os: windos-latest
+#                      node: 4 # node version 4
+#                      npm: 2  # npm version 2
+########### run job on ubuntu-latest only ##############         
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+   build:
+    runs-on: ${{ matrix.os }}
     strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
+        matrix:
+           os: [macos-latest, windows-latest, ubuntu-latest]    
+           node: [10, 12, 14]
+           exclude:  # exlude node v10 for macos-latest and run just 11 and 14 on macos, but all for others
+                - os: macos-latest
+                  node: 10
 
     steps:
     - uses: actions/checkout@v2

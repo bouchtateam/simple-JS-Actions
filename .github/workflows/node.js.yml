@@ -48,7 +48,9 @@ jobs:
            node: [10, 12, 14]
            exclude:  # exlude node v10 for macos-latest and run just 11 and 14 on macos, but all for others
                 - os: macos-latest
-                  node: 10, 12
+                  node: 10
+                - os: macos-latest
+                  node: 12           
 
     steps:
     - uses: actions/checkout@v2

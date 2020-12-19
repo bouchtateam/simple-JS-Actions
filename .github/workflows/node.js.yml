@@ -4,10 +4,22 @@
 name: Node.js CI
 
 on:
+#   schedule:
+#     - cron: "0 4 * * 1-5"
+######################### NO run Action when i edit README file #####
+#   push:
+#     paths-ignore: 
+#       - '**.md'
+######################### Run Action when i edit **.js ########
+#     push:
+#       paths: 
+#         - '**.js'
+      
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  
 
 jobs:
   build:

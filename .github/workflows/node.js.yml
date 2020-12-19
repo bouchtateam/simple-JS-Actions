@@ -50,7 +50,7 @@ jobs:
           #       - os: ubuntu-latest
           #         node: 14       
 ########################################################################
-           exclude:  # exclude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
+           include:  # exclude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
                 - os: ubuntu-latest
                   node: 12   
     steps:

@@ -47,7 +47,7 @@ jobs:
            os: [macos-latest, windows-latest, ubuntu-latest]    
            node: [10, 12, 14]
            exclude:  # exlude node v10 for macos-latest and run just 11 and 14 on macos, but all for others
-                - os: macos-latest, windows-latest
+                - os: macos-latest
                   node: 10, 12
 
     steps:

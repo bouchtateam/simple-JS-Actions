@@ -39,7 +39,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-           os: [macos-latest, windows-latest, ubuntu-latest]    
+           os: [self-hosted]    
+          # os: [macos-latest, windows-latest, ubuntu-latest]    
           #  node: [10, 12, 14]
            node: [14]
           #  exclude:  # exclude node v10 for macos-latest and  v12 for windows and v14 for ubuntu-latest, but all for others
